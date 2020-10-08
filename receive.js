@@ -8,9 +8,7 @@ function sendEvent(socket) {
 
     connection.createChannel((err, channel) => {
       if (err) throw err;
-
       const queue = QUEUE_NAME;
-
       channel.assertQueue(queue, {
         durable: false,
       });
@@ -20,7 +18,7 @@ function sendEvent(socket) {
         (msg) => {
           const message = JSON.parse(msg.content.toString());
           if (message.priority >= 7) {
-            console.log("socket", socket);
+            socket.emit("fetchMessage",message);
           }
         },
         {

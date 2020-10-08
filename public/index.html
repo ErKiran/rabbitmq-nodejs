@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <title>Socket io client</title>
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <ul id="data">
+
+    </ul>
+    <script>
+        const socket = io("http://localhost:3000");
+        socket.on("fetchMessage", ({ message, timestamp, priority }) => {
+            console.log("Message", message)
+            console.log("timestamp",timestamp)
+            console.log("priority",priority)
+            let node = document.createElement("li");
+            let textnode = document.createTextNode(`${message} At ${timestamp}`);
+            node.appendChild(textnode)
+            document.getElementById("data").appendChild(node)
+        })
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
