@@ -14,7 +14,7 @@ amqp.connect(RABBIT_URL, (err, connection) => {
         const msg = {
           message: faker.hacker.phrase(),
           timestamp: new Date(),
-          priority: Math.floor(Math.random() * 10),
+          priority: Math.floor(Math.random() * 11),
         };
 
         channel.assertQueue(queue, {

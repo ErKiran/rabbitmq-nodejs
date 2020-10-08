@@ -8,14 +8,23 @@
     </ul>
     <script>
         const socket = io("http://localhost:3000");
-        socket.on("fetchMessage", ({ message, timestamp, priority }) => {
-            console.log("Message", message)
-            console.log("timestamp",timestamp)
-            console.log("priority",priority)
+        socket.on("fetchMessage", ({ message, priority }) => {
+            let color;
+            if (priority === 10) {
+                color = 'red'
+            } else if (priority === 9) {
+                color = 'black'
+            } else if (priority === 8) {
+                color = 'blue'
+            } else {
+                color = 'purple'
+            }
             let node = document.createElement("li");
-            let textnode = document.createTextNode(`${message} At ${timestamp}`);
+            let textnode = document.createTextNode(message);
             node.appendChild(textnode)
-            document.getElementById("data").appendChild(node)
+            document.getElementById("data").appendChild(node).style.color = color
+
+            document.getElementById("data")
         })
     </script>
 </head>
